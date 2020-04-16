@@ -23,12 +23,22 @@ io.sockets.on('connection', function(socket) {
     connections.push(socket);
     console.log('Connected: %s sockets connected', connections.length);
 
-    socket.on('disconnect', function(data) {
-        users.splice(users.indexOf(socket.username), 1);
+    // socket.on('disconnect', function(data,cb) {
+    //     users.splice(users.indexOf(socket.username), 1);
+    //     updateUsernames();
+    //     connections.splice(connections.indexOf(socket), 1)
+    //     io.emit('disconnected', socket.username);
+    //     console.log('Disconnected: %s sockets connected', connections.length);    
+    // });
+
+    socket.on('logout', function(data) {
+        console.log(".....",users); 
+        console.log(".....",users.indexOf(data));        
+        users.splice(users.indexOf(data), 1);
         updateUsernames();
         connections.splice(connections.indexOf(socket), 1)
-        io.emit('disconnected', socket.username);
-        console.log('Disconnected: %s sockets connected', connections.length);    
+        // io.emit('disconnected', socket.username);
+        console.log('>>>>>Disconnected: %s sockets connected', connections.length);
     });
 
     socket.on('send message', function(data) {
@@ -44,8 +54,10 @@ io.sockets.on('connection', function(socket) {
         }
         else
         {
+            
             users.push(socket.username);
             updateUsernames();
+        
             console.log(socket.username);
             
             // callback(true);
