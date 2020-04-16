@@ -1,0 +1,19 @@
+{
+  "name": "projectgroup-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rock-Paper-Scissors-Project/ProjectGroup-Server.git"
+  },
+  "author": "Yoko-Guntoro-Andre",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rock-Paper-Scissors-Project/ProjectGroup-Server/issues"
+  },
+  "homepage": "https://github.com/Rock-Paper-Scissors-Project/ProjectGroup-Server#readme"
+}
