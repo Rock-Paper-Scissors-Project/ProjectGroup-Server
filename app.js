@@ -65,9 +65,11 @@ io.sockets.on('connection', function(socket) {
         if(choices.length == 2) 
         {
             console.log('[socket.io] Both players have made choices.');
-
+            console.log(choices[0]['choice']);
+            console.log(choices[1]['choice']);
             switch (choices[0]['choice'])
             {
+                
                 case 'rock':
                     switch (choices[1]['choice'])
                     {
@@ -76,10 +78,11 @@ io.sockets.on('connection', function(socket) {
                             break;
 
                         case 'paper':
+                            console.log(choices[0]['choice']);
                             io.emit('player 2 win', choices);               
                             break;
         
-                        case 'scissors':
+                        case 'scissor':
                             io.emit('player 1 win', choices);
                             break;
 
@@ -92,14 +95,14 @@ io.sockets.on('connection', function(socket) {
                     switch (choices[1]['choice'])
                     {
                         case 'rock':
-                            io.emit('player 1 win', choices);     
+                            io.emit('player 1 win', choices);
                             break;
 
                         case 'paper':
                             io.emit('tie', choices);
                             break;
         
-                        case 'scissors':
+                        case 'scissor':
                             io.emit('player 2 win', choices);
                             break;
 
@@ -108,7 +111,7 @@ io.sockets.on('connection', function(socket) {
                     }
                 break;
 
-                case 'scissors':
+                case 'scissor':
                     switch (choices[1]['choice'])
                     {
                         case 'rock':
@@ -119,7 +122,7 @@ io.sockets.on('connection', function(socket) {
                             io.emit('player 1 win', choices); 
                             break;
         
-                        case 'scissors':
+                        case 'scissor':
                             io.emit('tie', choices);
                             break;
 
