@@ -11,6 +11,7 @@ app.use(express.json())
 users = [];
 connections = [];
 choices = [];
+messages=[];
 
 // io.on('connection', function (socket) {
 //     socket.emit('news', { hello: 'world' });
@@ -37,6 +38,7 @@ io.sockets.on('connection', function(socket) {
         users.splice(users.indexOf(data), 1);
         updateUsernames();
         connections.splice(connections.indexOf(socket), 1)
+        messages = []
         // io.emit('disconnected', socket.username);
         console.log('>>>>>Disconnected: %s sockets connected', connections.length);
     });
@@ -44,6 +46,16 @@ io.sockets.on('connection', function(socket) {
     socket.on('send message', function(data) {
         io.sockets.emit('new message', {msg: data, user: socket.username});
     });
+
+    socket.on('send-message', function(data) {
+        console.log('entered server, received', data)
+        messages.push(data)
+        // if (messages.length > 7){
+        //     messages.shift()
+        // }
+        console.log(messages)
+        io.emit('send-message', messages)
+    })
 
     socket.on('add user', function(data, callback) {
         socket.username = data;
