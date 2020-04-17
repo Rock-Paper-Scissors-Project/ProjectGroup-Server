@@ -3,11 +3,11 @@ const app = express()
 const http = require('http').createServer(app)
 const PORT = 3000
 const io = require('socket.io')(http)
-// const router = require('./routes/index')
+const router = require('./routes/index')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
-// app.use(router)
+app.use(router)
 users = [];
 connections = [];
 choices = [];
